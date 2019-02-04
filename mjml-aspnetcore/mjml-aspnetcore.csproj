@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <RootNamespace>mjml.aspnetcore</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="render.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="render.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="2.2.0" />
+  </ItemGroup>
+
+</Project>
