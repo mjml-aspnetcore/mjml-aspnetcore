@@ -20,7 +20,7 @@ namespace test
             var mjml = provider.GetRequiredService<IMjmlServices>();
 
             var result = await mjml.Render("<mjml><mj-body></mj-body></mjml>");
-            Assert.IsFalse(result.Errors.Length > 0);
+            Assert.IsFalse(result.Errors?.Length > 0);
             Assert.IsFalse(string.IsNullOrWhiteSpace(result.Html));
         }
     }
