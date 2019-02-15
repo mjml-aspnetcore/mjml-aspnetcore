@@ -11,7 +11,6 @@ namespace Mjml.AspNetCore
         private readonly INodeServices _nodeServices;
         private readonly MjmlServiceOptions _options;
 
-        private readonly StringAsTempFile _install;
         private readonly StringAsTempFile _renderer;
 
         public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
@@ -19,15 +18,8 @@ namespace Mjml.AspNetCore
             _nodeServices = nodeServices;
             _options = options;
 
-            // setup scripts
+            // setup renderer script
             var assembly = typeof(MjmlServices).Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.install.js"))
-            using (var reader = new StreamReader(stream))
-            {
-                var result = reader.ReadToEnd();
-                _install = new StringAsTempFile(result, CancellationToken.None);
-            }
-
             using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.renderer.js"))
             using (var reader = new StreamReader(stream))
             {
@@ -35,8 +27,22 @@ namespace Mjml.AspNetCore
                 _renderer = new StringAsTempFile(result, CancellationToken.None);
             }
 
-            // npm install
-            var installResult = _nodeServices.InvokeAsync<string>(CancellationToken.None, _install.FileName, null).Result;
+            if (_options.RunNpmInstall)
+            {
+                InstallPackages().Wait();
+            }
+        }
+
+        private async Task InstallPackages()
+        {
+            var assembly = typeof(MjmlServices).Assembly;
+            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.install.js"))
+            using (var reader = new StreamReader(stream))
+            {
+                var result = reader.ReadToEnd();
+                var install = new StringAsTempFile(result, CancellationToken.None);
+                await _nodeServices.InvokeAsync<string>(CancellationToken.None, install.FileName, null);
+            }
         }
 
         public Task<MjmlResponse> Render(string view)
