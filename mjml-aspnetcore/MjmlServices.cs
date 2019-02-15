@@ -17,14 +17,8 @@ namespace mjml.aspnetcore
             _nodeServices = nodeServices;
             _options = options;
 
-            _script = new StringAsTempFile(@"
-const mjml2html = require('mjml');
-
-module.exports = function (callback, view, options) {
-    const result = mjml2html(view, options);
-    if (result.error) {
-        callback(result.error, result.html);
-        return;
+            // npm install
+            var installResult = _nodeServices.InvokeAsync<string>(CancellationToken.None, "./scripts/install.js", null).Result;
     }
 
         public Task<MjmlResponse> Render(string view)
