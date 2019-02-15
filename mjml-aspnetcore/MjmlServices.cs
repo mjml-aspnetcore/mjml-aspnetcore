@@ -21,7 +21,7 @@ namespace mjml.aspnetcore
             _options = options;
 
             // setup scripts
-            var assembly = Assembly.GetExecutingAssembly();
+            var assembly = typeof(MjmlServices).Assembly;
             using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.install.js"))
             using (var reader = new StreamReader(stream))
             {
