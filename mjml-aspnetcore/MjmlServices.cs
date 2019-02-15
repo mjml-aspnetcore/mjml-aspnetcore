@@ -10,8 +10,6 @@ namespace mjml.aspnetcore
         private readonly INodeServices _nodeServices;
         private readonly MjmlServiceOptions _options;
 
-        private readonly StringAsTempFile _script;
-
         public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
         {
             _nodeServices = nodeServices;
@@ -39,7 +37,7 @@ namespace mjml.aspnetcore
                 Minify = _options.DefaultMinify,
             };
 
-            var command = _script.FileName;
+            var command = "./scripts/renderer.js";
             var args = new object[] { view, options };
             var result = await _nodeServices.InvokeAsync<MjmlResponse>(token, command, args);
 
@@ -49,7 +47,6 @@ namespace mjml.aspnetcore
         public void Dispose()
         {
             _nodeServices?.Dispose();
-            _script?.Dispose();
         }
     }
 }
