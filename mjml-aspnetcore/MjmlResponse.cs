@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace mjml.aspnetcore
+namespace Mjml.AspNetCore
 {
     public class MjmlResponse
     {

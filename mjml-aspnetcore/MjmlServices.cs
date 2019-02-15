@@ -1,19 +1,18 @@
 using System;
 using System.IO;
-using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.NodeServices;
 
-namespace mjml.aspnetcore
+namespace Mjml.AspNetCore
 {
     public class MjmlServices : IMjmlServices, IDisposable
     {
         private readonly INodeServices _nodeServices;
         private readonly MjmlServiceOptions _options;
 
-        private StringAsTempFile _install;
-        private StringAsTempFile _renderer;
+        private readonly StringAsTempFile _install;
+        private readonly StringAsTempFile _renderer;
 
         public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
         {

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace mjml.aspnetcore
+namespace Mjml.AspNetCore
 {
     public static class ServiceCollectionExtensions
     {

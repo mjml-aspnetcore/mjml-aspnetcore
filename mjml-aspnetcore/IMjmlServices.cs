@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace mjml.aspnetcore
+namespace Mjml.AspNetCore
 {
     public interface IMjmlServices
     {

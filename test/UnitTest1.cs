@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using mjml.aspnetcore;
+using Mjml.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 

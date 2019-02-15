@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mjml.aspnetcore
+namespace Mjml.AspNetCore
 {
     public class MjmlRenderOptions
     {
