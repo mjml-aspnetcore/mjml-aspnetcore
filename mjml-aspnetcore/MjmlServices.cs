@@ -17,13 +17,9 @@ namespace mjml.aspnetcore
 
             // npm install
             var installResult = _nodeServices.InvokeAsync<string>(CancellationToken.None, "./scripts/install.js", null).Result;
-    }
-
-        public Task<MjmlResponse> Render(string view)
-};
-", CancellationToken.None);
         }
 
+        public Task<MjmlResponse> Render(string view)
         {
             return Render(view, CancellationToken.None);
         }
