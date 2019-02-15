@@ -13,7 +13,10 @@ namespace test
         {
             var services = new ServiceCollection();
 
-            services.AddMjmlServices();
+            services.AddMjmlServices(o =>
+            {
+                o.RunNpmInstall = true;
+            });
 
             var provider = services.BuildServiceProvider();
 
