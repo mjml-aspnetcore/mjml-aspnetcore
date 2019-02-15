@@ -1,5 +1,5 @@
 
-module.exports = function (callback) {
+module.exports = function(callback) {
     try {
         const cp = require('child_process');
 
@@ -18,4 +18,4 @@ module.exports = function (callback) {
     } catch (err) {
         callback(err, false);
     }
-}
+};

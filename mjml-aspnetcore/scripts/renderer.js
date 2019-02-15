@@ -1,5 +1,4 @@
-﻿
-module.exports = function (callback, view, options) {
+﻿module.exports = function(callback, view, options) {
     try {
         const mjml2html = require('mjml');
 
@@ -7,15 +6,9 @@ module.exports = function (callback, view, options) {
         const result = mjml2html(view, options);
         console.log(result);
 
-        if (result.errors && result.errors.length) {
-            callback({ errors: result.errors }, {});
-            return;
-        }
-
-        callback(null, {
-            html: result.html,
-        });
+        callback(null, result);
     } catch (err) {
+        console.error(err);
         callback(err, null);
     }
-}
+};
