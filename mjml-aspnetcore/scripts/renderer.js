@@ -1,16 +1,21 @@
-﻿const mjml2html = require('mjml');
-
+﻿
 module.exports = function (callback, view, options) {
-    console.log('parsing view');
-    const result = mjml2html(view, options);
-    console.log(result);
+    try {
+        const mjml2html = require('mjml');
 
-    if (result.errors && result.errors.length) {
-        callback({ errors: result.errors }, {});
-        return;
+        console.log('parsing view');
+        const result = mjml2html(view, options);
+        console.log(result);
+
+        if (result.errors && result.errors.length) {
+            callback({ errors: result.errors }, {});
+            return;
+        }
+
+        callback(null, {
+            html: result.html,
+        });
+    } catch (err) {
+        callback(err, null);
     }
-
-    callback(null, {
-        html: result.html,
-    });
-};
+}
