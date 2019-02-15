@@ -8,9 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="scripts\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="scripts\**" />
   </ItemGroup>
 
   <ItemGroup>

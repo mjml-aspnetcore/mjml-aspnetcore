@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.NodeServices;
@@ -10,13 +12,32 @@ namespace mjml.aspnetcore
         private readonly INodeServices _nodeServices;
         private readonly MjmlServiceOptions _options;
 
+        private StringAsTempFile _install;
+        private StringAsTempFile _renderer;
+
         public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
         {
             _nodeServices = nodeServices;
             _options = options;
 
+            // setup scripts
+            var assembly = Assembly.GetExecutingAssembly();
+            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.install.js"))
+            using (var reader = new StreamReader(stream))
+            {
+                var result = reader.ReadToEnd();
+                _install = new StringAsTempFile(result, CancellationToken.None);
+            }
+
+            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.renderer.js"))
+            using (var reader = new StreamReader(stream))
+            {
+                var result = reader.ReadToEnd();
+                _renderer = new StringAsTempFile(result, CancellationToken.None);
+            }
+
             // npm install
-            var installResult = _nodeServices.InvokeAsync<string>(CancellationToken.None, "./scripts/install.js", null).Result;
+            var installResult = _nodeServices.InvokeAsync<string>(CancellationToken.None, _install.FileName, null).Result;
         }
 
         public Task<MjmlResponse> Render(string view)
@@ -33,9 +54,8 @@ namespace mjml.aspnetcore
                 Minify = _options.DefaultMinify,
             };
 
-            var command = "./scripts/renderer.js";
             var args = new object[] { view, options };
-            var result = await _nodeServices.InvokeAsync<MjmlResponse>(token, command, args);
+            var result = await _nodeServices.InvokeAsync<MjmlResponse>(token, _renderer.FileName, args);
 
             return result;
         }
