@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.NodeServices;
@@ -27,17 +27,16 @@ module.exports = function (callback, view, options) {
         return;
     }
 
-    callback(null, result.html);
+        public Task<MjmlResponse> Render(string view)
 };
 ", CancellationToken.None);
         }
 
-        public Task<string> Render(string view)
         {
             return Render(view, CancellationToken.None);
         }
 
-        public async Task<string> Render(string view, CancellationToken token)
+        public async Task<MjmlResponse> Render(string view, CancellationToken token)
         {
             var options = new MjmlRenderOptions()
             {
@@ -48,7 +47,7 @@ module.exports = function (callback, view, options) {
 
             var command = _script.FileName;
             var args = new object[] { view, options };
-            var result = await _nodeServices.InvokeAsync<string>(token, command, args);
+            var result = await _nodeServices.InvokeAsync<MjmlResponse>(token, command, args);
 
             return result;
         }
