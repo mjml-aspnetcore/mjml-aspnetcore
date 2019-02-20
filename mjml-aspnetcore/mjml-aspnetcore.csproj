@@ -7,6 +7,17 @@
     <AssemblyName>Mjml.AspNetCore</AssemblyName>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <Product>MJML View Render Engine for .Net Core</Product>
+    <PackageTags>mjml</PackageTags>
+    <Authors>jpknoll@gmail.com</Authors>
+    <PackageProjectUrl>https://github.com/jpknoll/mjml-aspnetcore</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/jpknoll/mjml-aspnetcore/blob/master/LICENSE.md</PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/jpknoll/mjml-aspnetcore</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+
   <ItemGroup>
     <EmbeddedResource Include="scripts\**" />
   </ItemGroup>
