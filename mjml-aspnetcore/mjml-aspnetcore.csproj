@@ -12,7 +12,7 @@
     <PackageTags>mjml</PackageTags>
     <Authors>jpknoll@gmail.com</Authors>
     <PackageProjectUrl>https://github.com/jpknoll/mjml-aspnetcore</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/jpknoll/mjml-aspnetcore/blob/master/LICENSE.md</PackageLicenseUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/jpknoll/mjml-aspnetcore</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
