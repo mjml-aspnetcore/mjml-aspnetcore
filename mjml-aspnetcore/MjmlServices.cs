@@ -20,28 +20,11 @@ namespace Mjml.AspNetCore
 
             // setup renderer script
             var assembly = typeof(MjmlServices).Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.renderer.js"))
+            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.dist.renderer.js"))
             using (var reader = new StreamReader(stream))
             {
                 var result = reader.ReadToEnd();
                 _renderer = new StringAsTempFile(result, CancellationToken.None);
-            }
-
-            if (_options.RunNpmInstall)
-            {
-                InstallPackages().Wait();
-            }
-        }
-
-        private async Task InstallPackages()
-        {
-            var assembly = typeof(MjmlServices).Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.install.js"))
-            using (var reader = new StreamReader(stream))
-            {
-                var result = reader.ReadToEnd();
-                var install = new StringAsTempFile(result, CancellationToken.None);
-                await _nodeServices.InvokeAsync<string>(CancellationToken.None, install.FileName, null);
             }
         }
 
@@ -56,7 +39,7 @@ namespace Mjml.AspNetCore
             {
                 KeepComments = _options.DefaultKeepComments,
                 Beautify = _options.DefaultBeautify,
-                Minify = _options.DefaultMinify,
+                Minify = false, // unsupported until we can re-add uglify
             };
 
             var args = new object[] { view, options };

@@ -1,0 +1,22 @@
+{
+  "name": "mjml-aspnetcore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "renderer.js",
+  "scripts": {
+    "build": "node node_modules/webpack/bin/webpack.js --env.prod",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "mjml": "^4.4.0-beta.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "shebang-loader": "0.0.1",
+    "webpack": "^4.29.5"
+  }
+}

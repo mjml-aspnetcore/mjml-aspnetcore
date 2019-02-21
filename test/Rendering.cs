@@ -1,21 +1,20 @@
 using System.Threading.Tasks;
 using Mjml.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 
 namespace test
 {
-    [TestClass]
-    public class UnitTest1
+    [Trait("Category", "Rendering")]
+    public class RenderingTests
     {
-        [TestMethod]
+        [Fact]
         public async Task SimpleRender()
         {
             var services = new ServiceCollection();
 
             services.AddMjmlServices(o =>
             {
-                o.RunNpmInstall = true;
             });
 
             var provider = services.BuildServiceProvider();
@@ -23,18 +22,17 @@ namespace test
             var mjml = provider.GetRequiredService<IMjmlServices>();
 
             var result = await mjml.Render("<mjml><mj-body></mj-body></mjml>");
-            Assert.IsFalse(result.Errors?.Length > 0);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.Html));
+            Assert.False(result.Errors?.Length > 0);
+            Assert.False(string.IsNullOrWhiteSpace(result.Html));
         }
 
-        [TestMethod]
+        [Fact]
         public async Task RenderWithError()
         {
             var services = new ServiceCollection();
 
             services.AddMjmlServices(o =>
             {
-                o.RunNpmInstall = true;
             });
 
             var provider = services.BuildServiceProvider();
@@ -88,8 +86,8 @@ namespace test
 ";
 
             var result = await mjml.Render(view);
-            Assert.IsTrue(result.Errors?.Length > 0);
-            Assert.IsFalse(string.IsNullOrWhiteSpace(result.Html));
+            Assert.True(result.Errors?.Length > 0);
+            Assert.False(string.IsNullOrWhiteSpace(result.Html));
         }
     }
 }
