@@ -16,7 +16,9 @@ namespace test
 
             services.AddMjmlServices(o =>
             {
-                o.RunNpmInstall = true;
+                o.DefaultBeautify = false;
+                o.DefaultKeepComments = true;
+                o.DefaultMinify = false;
             });
 
             var provider = services.BuildServiceProvider();
