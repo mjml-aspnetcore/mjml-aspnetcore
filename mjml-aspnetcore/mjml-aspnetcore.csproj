@@ -33,18 +33,10 @@
     <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="2.2.0" />
   </ItemGroup>
 
-  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+  <Target Name="RunWebpack" BeforeTargets="Build">
     <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec Command="npm install" />
+    <Exec Command="npm install --no-audit" />
     <Exec Command="npm run build" />
-    <!-- Include the newly-built files in the publish output -->
-    <ItemGroup>
-      <DistFiles Include="wwwroot\dist\**" />
-      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
-        <RelativePath>%(DistFiles.Identity)</RelativePath>
-        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-      </ResolvedFileToPublish>
-    </ItemGroup>
 </Target>
 
 </Project>
