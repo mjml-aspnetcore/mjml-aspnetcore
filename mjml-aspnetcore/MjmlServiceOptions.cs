@@ -6,13 +6,10 @@ namespace Mjml.AspNetCore
     {
         public MjmlServiceOptions()
         {
-            RunNpmInstall = false;
             DefaultKeepComments = true;
             DefaultBeautify = false;
             DefaultMinify = false;
         }
-
-        public bool RunNpmInstall { get; set; }
 
         public bool DefaultKeepComments { get; set; }
 

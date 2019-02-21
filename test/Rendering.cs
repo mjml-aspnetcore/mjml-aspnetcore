@@ -15,7 +15,6 @@ namespace test
 
             services.AddMjmlServices(o =>
             {
-                o.RunNpmInstall = true;
             });
 
             var provider = services.BuildServiceProvider();
@@ -34,7 +33,6 @@ namespace test
 
             services.AddMjmlServices(o =>
             {
-                o.RunNpmInstall = true;
             });
 
             var provider = services.BuildServiceProvider();
