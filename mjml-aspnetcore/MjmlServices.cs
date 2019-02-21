@@ -20,7 +20,7 @@ namespace Mjml.AspNetCore
 
             // setup renderer script
             var assembly = typeof(MjmlServices).Assembly;
-            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.scripts.renderer.js"))
+            using (var stream = assembly.GetManifestResourceStream("Mjml.AspNetCore.dist.renderer.js"))
             using (var reader = new StreamReader(stream))
             {
                 var result = reader.ReadToEnd();
@@ -29,7 +29,7 @@ namespace Mjml.AspNetCore
 
             if (_options.RunNpmInstall)
             {
-                InstallPackages().Wait();
+                //InstallPackages().Wait();
             }
         }
 
