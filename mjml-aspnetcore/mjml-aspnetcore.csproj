@@ -20,13 +20,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="dist\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="node_modules\**" />
     <EmbeddedResource Remove="node_modules\**" />
     <None Remove="node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="dist\renderer.js" />
   </ItemGroup>
 
   <ItemGroup>
