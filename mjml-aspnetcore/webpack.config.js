@@ -9,7 +9,7 @@ module.exports = {
         'renderer': './scripts/renderer.js',
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        extensions: ['.js'],
         alias: {
             'mimer': path.resolve(__dirname, 'lib/mimer/mimer.js'),
             'uglify-js': path.resolve(__dirname, 'mocks/uglify-js'),
@@ -20,8 +20,8 @@ module.exports = {
         filename: '[name].js',
         libraryTarget: 'commonjs2',
     },
-    // mode: 'development',
-    mode: 'production',
+    mode: 'development',
+    // mode: 'production',
     target: 'node',
     module: {
         rules: [{
