@@ -33,10 +33,4 @@
     <PackageReference Include="Microsoft.AspNetCore.NodeServices" Version="2.2.0" />
   </ItemGroup>
 
-  <Target Name="RunWebpack" BeforeTargets="Build">
-    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
-    <Exec Command="npm install --no-audit" />
-    <Exec Command="npm run build" />
-</Target>
-
 </Project>
