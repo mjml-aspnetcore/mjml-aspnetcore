@@ -1,7 +1,7 @@
 {
   "name": "mjml-aspnetcore",
   "version": "1.0.0",
-  "description": "",
+  "description": "Script shim between mjml and aspnetcore node services",
   "main": "renderer.js",
   "scripts": {
     "build": "node node_modules/webpack/bin/webpack.js --env.prod",
@@ -9,6 +9,7 @@
   },
   "author": "",
   "license": "MIT",
+  "repository": "https://github.com/jpknoll/mjml-aspnetcore",
   "dependencies": {
     "mjml": "^4.4.0-beta.1"
   },
