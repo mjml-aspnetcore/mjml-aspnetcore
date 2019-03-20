@@ -26,6 +26,14 @@ namespace Mjml.AspNetCore
                 var result = reader.ReadToEnd();
                 _renderer = new StringAsTempFile(result, CancellationToken.None);
             }
+
+            // force load the render script
+            Warmup().Wait();
+        }
+
+        public void Dispose()
+        {
+            _nodeServices?.Dispose();
         }
 
         public Task<MjmlResponse> Render(string view)
@@ -48,9 +56,10 @@ namespace Mjml.AspNetCore
             return result;
         }
 
-        public void Dispose()
+        private Task Warmup()
         {
-            _nodeServices?.Dispose();
+            var emptyView = "<mjml></mjml>";
+            return Render(emptyView, CancellationToken.None);
         }
     }
 }
