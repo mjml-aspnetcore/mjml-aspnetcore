@@ -1,5 +1,7 @@
 mjml-aspnetcore
 
+![Nuget](https://img.shields.io/nuget/dt/Mjml.AspNetCore.svg)
+
 MJML is a responsive email templating system. You can find more information on MJML here: https://mjml.io/
 
 Mjml-AspNetCore is built on top of NodeServices (https://github.com/aspnet/AspNetCore/tree/master/src/Middleware/NodeServices)
