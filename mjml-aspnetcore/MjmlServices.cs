@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.NodeServices;
+using Newtonsoft.Json;
 
 namespace Mjml.AspNetCore
 {
@@ -41,7 +42,18 @@ namespace Mjml.AspNetCore
             return Render(view, CancellationToken.None);
         }
 
-        public async Task<MjmlResponse> Render(string view, CancellationToken token)
+        /// <summary>
+        /// Deserializes the json string to an object before shipment to NodeServices
+        /// </summary>
+        /// <param name="json">Valid JSON object describing mjml tree view</param>
+        /// <returns></returns>
+        public Task<MjmlResponse> RenderFromJson(string json)
+        {
+            var view = JsonConvert.DeserializeObject(json);
+            return Render(view, CancellationToken.None);
+        }
+
+        public async Task<MjmlResponse> Render(object view, CancellationToken token)
         {
             var options = new MjmlRenderOptions()
             {
