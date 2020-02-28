@@ -4,7 +4,7 @@
   "description": "Script shim between mjml and aspnetcore node services",
   "main": "renderer.js",
   "scripts": {
-    "build": "node node_modules/webpack/bin/webpack.js",
+    "build": "node node_modules/webpack/bin/webpack.js --env.prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
