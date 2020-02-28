@@ -1,3 +1,5 @@
+// mjml-aspnetcore - Copyright (c) 2020 CaptiveAire
+
 using System;
 using System.IO;
 using System.Threading;
@@ -11,18 +13,23 @@ namespace Mjml.AspNetCore
 {
     public class MjmlServices : IMjmlServices, IDisposable
     {
-        private readonly INodeServices _nodeServices;
+        readonly INodeServices _nodeServices;
 
-        private readonly MjmlServiceOptions _options;
+        readonly MjmlServiceOptions _options;
 
-        private readonly StringAsTempFile _renderer;
+        readonly StringAsTempFile _renderer;
 
         public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
         {
             _nodeServices = nodeServices;
             _options = options;
 
-            this._renderer = GetRenderer();
+            _renderer = GetRenderer();
+
+            if (options.WarmUpRender)
+            {
+                Warmup().Wait();
+            }
         }
 
         public void Dispose()
@@ -30,20 +37,16 @@ namespace Mjml.AspNetCore
             _nodeServices?.Dispose();
         }
 
-        public Task<MjmlResponse> Render(string view)
-        {
-            return Render(view, CancellationToken.None);
-        }
-
         /// <summary>
         /// Deserializes the json string to an object before shipment to NodeServices
         /// </summary>
         /// <param name="json">Valid JSON object describing mjml tree view</param>
+        /// <param name="token"></param>
         /// <returns></returns>
-        public Task<MjmlResponse> RenderFromJson(string json)
+        public Task<MjmlResponse> RenderFromJson(string json, CancellationToken token = default)
         {
             var view = JsonConvert.DeserializeObject(json);
-            return Render(view, CancellationToken.None);
+            return Render(view, token);
         }
 
         /// <summary>
@@ -61,6 +64,11 @@ namespace Mjml.AspNetCore
             }
         }
 
+        public Task<MjmlResponse> Render(string view, CancellationToken token = default)
+        {
+            return Render((object)view, token);
+        }
+
         public async Task<MjmlResponse> Render(object view, CancellationToken token)
         {
             var options = new MjmlRenderOptions
@@ -76,10 +84,10 @@ namespace Mjml.AspNetCore
             return result;
         }
 
-        //private Task Warmup()
-        //{
-        //    var emptyView = "<mjml></mjml>";
-        //    return Render(emptyView, CancellationToken.None);
-        //}
+        Task Warmup()
+        {
+            var emptyView = "<mjml></mjml>";
+            return Render(emptyView, CancellationToken.None);
+        }
     }
 }
