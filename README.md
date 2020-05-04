@@ -1,6 +1,6 @@
 # mjml-aspnetcore
 
-![Nuget](https://img.shields.io/nuget/dt/Mjml.AspNetCore.svg)
+![Nuget](https://img.shields.io/nuget/dt/Mjml.AspNetCore.svg) [![NuGet version](https://badge.fury.io/nu/Mjml.AspNetCore.svg)](https://badge.fury.io/nu/Mjml.AspNetCore)
 
 MJML is a responsive email templating system. You can find more information on MJML here: https://mjml.io/
 
