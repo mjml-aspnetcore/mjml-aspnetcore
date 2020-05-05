@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mjml.AspNetCore
@@ -12,8 +13,8 @@ namespace Mjml.AspNetCore
 
         public static void AddMjmlServices(this IServiceCollection serviceCollection, Action<MjmlServiceOptions> configure)
         {
-
             var options = new MjmlServiceOptions();
+
             configure(options);
 
             serviceCollection.AddNodeServices();

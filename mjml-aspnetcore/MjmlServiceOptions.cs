@@ -4,17 +4,12 @@ namespace Mjml.AspNetCore
 {
     public class MjmlServiceOptions
     {
-        public MjmlServiceOptions()
-        {
-            DefaultKeepComments = true;
-            DefaultBeautify = false;
-            DefaultMinify = false;
-        }
+        public bool DefaultKeepComments { get; set; } = true;
 
-        public bool DefaultKeepComments { get; set; }
+        public bool DefaultBeautify { get; set; } = false;
 
-        public bool DefaultBeautify { get; set; }
+        public bool DefaultMinify { get; set; } = false;
 
-        public bool DefaultMinify { get; set; }
+        public bool WarmUpRender { get; set; } = true;
     }
 }
