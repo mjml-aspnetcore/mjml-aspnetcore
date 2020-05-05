@@ -11,14 +11,14 @@
   "license": "MIT",
   "repository": "https://github.com/jpknoll/mjml-aspnetcore",
   "dependencies": {
-    "mjml": "^4.5.1"
+    "mjml": "^4.6.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.3",
-    "@babel/preset-env": "^7.3.1",
-    "babel-loader": "^8.0.5",
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-loader": "^8.1.0",
     "shebang-loader": "0.0.1",
-    "webpack": "^4.29.5",
-    "webpack-cli": "^3.2.3"
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   }
 }
