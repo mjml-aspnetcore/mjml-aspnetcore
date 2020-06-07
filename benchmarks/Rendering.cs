@@ -26,11 +26,87 @@ namespace test
             _mjmlServices = provider.GetRequiredService<IMjmlServices>();
         }
 
+        [Params(false, true)]
+        public bool OldScript;
+
         [Benchmark]
         public async Task SimpleRender()
         {
-            
             var result = await _mjmlServices.Render("<mjml><mj-body></mj-body></mjml>");
+        }
+        
+        [Benchmark]
+        public async Task ComplexRender()
+        {
+            var view = @"
+<mjml>
+  <mj-body>
+    <mj-section>
+      <mj-column width='30%'>
+        <mj-image align='left' alt='Logo' src='https://placeholder.com/wp-content/uploads/2018/10/placeholder.com-logo4.png' padding='15px' />
+      </mj-column>
+    </mj-section>
+    <mj-section>
+      <mj-column>
+        <mj-text font-size='20px' font-family='Open Sans' padding-left='15px' padding-bottom='0'>Your Notifications</mj-text>
+      </mj-column>
+    </mj-section>
+    <mj-wrapper background-color='white' padding='15px'>
+      <mj-section padding='0 0 10px 0'>
+        <mj-column>
+          <mj-text font-family='Open Sans' font-size='16px' padding-left='0'>Hello User</mj-text>
+          <mj-text font-family='Open Sans' font-size='14px' padding-left='0' padding-bottom='0'>We have some notifications from  for you.</mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section padding='10px 0 0 0'>
+        <mj-group>
+          <mj-column width='100%'>
+            <mj-text font-family='Open Sans' font-size='16px' font-weight='bold' padding='0px 10px 10px 0px'>subject1</mj-text>
+            <mj-text font-family='Open Sans' font-size='14px' padding='0px 0px 5px 0px'>Lorem ipsum dolor sit amet, consetetur sadipscing elitr</mj-text>
+
+          </mj-column>
+        </mj-group>
+      </mj-section>
+      <mj-section padding-top='6px'>
+        <mj-column>
+          <mj-button align='left' background-color='#175DA8' border-radius='4px' font-family='Open Sans' font-size='16px' padding='0px' href='https://confirm.notifo.com'>Got It!</mj-button>
+        </mj-column>
+      </mj-section>
+      <mj-section padding='0'>
+        <mj-column>
+          <mj-image src='' width='0' height='0' />
+
+          <mj-divider padding='5px' border-color='#ddd' border-width='1px' />
+        </mj-column>
+      </mj-section>
+
+      <mj-section padding='0'>
+        <mj-column>
+          <mj-text font-family='Open Sans' font-size='14px' padding-left='0'>Best regards,</mj-text>
+          <mj-text font-family='Open Sans' font-size='14px' padding-left='0'>Your  team.</mj-text>
+        </mj-column>
+      </mj-section>
+    </mj-wrapper>
+    <mj-section>
+      <mj-column>
+        <mj-social font-family='Open Sans' font-size='15px' icon-size='20px' mode='horizontal'>
+          <mj-social-element name='facebook' href='https://notifo.io/'>Facebook</mj-social-element>
+          <mj-social-element name='google' href='https://notifo.io/'>Google</mj-social-element>
+          <mj-social-element name='twitter' href='https://notifo.io/'>Twitter</mj-social-element>
+        </mj-social>
+      </mj-column>
+    </mj-section>
+    <mj-section padding-top='10px'>
+      <mj-column>
+        <mj-text font-family='Open Sans' font-size='12px' padding='4px' align='center'>Acme Corporation, Inc.</mj-text>
+        <mj-text font-family='Open Sans' font-size='12px' padding='4px' align='center'>New York City, United Stated</mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>";
+
+            var result = await _mjmlServices.Render(view);
         }
 
         [Benchmark]
