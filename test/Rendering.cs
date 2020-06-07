@@ -48,45 +48,45 @@ namespace test
 
             var mjml = provider.GetRequiredService<IMjmlServices>();
 
-            var view = 
+            var view =
             @"{
-                tagName: 'mjml',
-                attributes: {},
-                children: [{
-                    tagName: 'mj-body',
-                    attributes: {},
-                    children: [{
-                        tagName: 'mj-section',
-                        attributes: {},
-                        children: [{
-                            tagName: 'mj-column',
-                            attributes: {},
-                            children: [{
-                                tagName: 'mj-image',
-                                attributes: {
+                'tagName': 'mjml',
+                'attributes': {},
+                'children': [{
+                    'tagName': 'mj-body',
+                    'attributes': {},
+                    'children': [{
+                        'tagName': 'mj-section',
+                        'attributes': {},
+                        'children': [{
+                            'tagName': 'mj-column',
+                            'attributes': {},
+                            'children': [{
+                                'tagName': 'mj-image',
+                                'attributes': {
                                     'width': '100px',
                                     'src': '/assets/img/logo-small.png'
                                 }
                             },
                             {
-                                tagName: 'mj-divider',
-                                attributes: {
+                                'tagName': 'mj-divider',
+                                'attributes': {
                                     'border-color' : '#F46E43'
                                 }
                             }, 
                             {
-                                tagName: 'mj-text',
-                                attributes: {
+                                'tagName': 'mj-text',
+                                'attributes': {
                                     'font-size': '20px',
                                     'color': '#F45E43',
                                     'font-family': 'Helvetica'
                                 },
-                                content: 'Hello World'
+                                'content': 'Hello World'
                             }]
                         }]
                     }]
                 }]
-            }";
+            }".Replace("\'", "\"");
 
             var result = await mjml.RenderFromJson(view);
             Assert.False(result.Errors?.Length > 0);

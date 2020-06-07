@@ -2,24 +2,22 @@
 
 using System;
 using System.IO;
+using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
-
-using Microsoft.AspNetCore.NodeServices;
-
-using Newtonsoft.Json;
+using Jering.Javascript.NodeJS;
 
 namespace Mjml.AspNetCore
 {
     public class MjmlServices : IMjmlServices, IDisposable
     {
-        readonly INodeServices _nodeServices;
+        readonly INodeJSService _nodeServices;
 
         readonly MjmlServiceOptions _options;
 
         readonly StringAsTempFile _renderer;
 
-        public MjmlServices(INodeServices nodeServices, MjmlServiceOptions options)
+        public MjmlServices(INodeJSService nodeServices, MjmlServiceOptions options)
         {
             _nodeServices = nodeServices;
             _options = options;
@@ -34,6 +32,7 @@ namespace Mjml.AspNetCore
 
         public void Dispose()
         {
+            _renderer?.Dispose();
             _nodeServices?.Dispose();
         }
 
@@ -45,7 +44,8 @@ namespace Mjml.AspNetCore
         /// <returns></returns>
         public Task<MjmlResponse> RenderFromJson(string json, CancellationToken token = default)
         {
-            var view = JsonConvert.DeserializeObject(json);
+            var view = JsonSerializer.Deserialize<object>(json);
+
             return Render(view, token);
         }
 
@@ -79,7 +79,7 @@ namespace Mjml.AspNetCore
             };
 
             var args = new[] { view, options };
-            var result = await _nodeServices.InvokeAsync<MjmlResponse>(token, _renderer.FileName, args);
+            var result = await _nodeServices.InvokeFromFileAsync<MjmlResponse>(_renderer.FileName, null, args, token);
 
             return result;
         }
