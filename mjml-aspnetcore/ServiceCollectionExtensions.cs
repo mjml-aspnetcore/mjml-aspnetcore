@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Jering.Javascript.NodeJS;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Mjml.AspNetCore
@@ -17,7 +17,7 @@ namespace Mjml.AspNetCore
 
             configure(options);
 
-            serviceCollection.AddNodeServices();
+            serviceCollection.AddNodeJS();
             serviceCollection.AddSingleton(options);
             serviceCollection.AddSingleton<IMjmlServices, MjmlServices>();
         }
