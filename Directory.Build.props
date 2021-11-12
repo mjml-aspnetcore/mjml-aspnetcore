@@ -1,0 +1,15 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Authors>;jpknoll@gmail.comsebastianstehle</Authors>
+    <Copyright>MIT</Copyright>
+    <Description>MJML View Render Engine for .Net Core</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/jpknoll/mjml-aspnetcore</PackageProjectUrl>
+    <PackageTags>mjml</PackageTags>
+    <PackageTags>Squidex HeadlessCMS Asset Storage</PackageTags>
+    <Product>MJML View Render Engine for .Net Core</Product>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/jpknoll/mjml-aspnetcore</RepositoryUrl>
+    <Version>1.3.0</Version>
+  </PropertyGroup>
+</Project>

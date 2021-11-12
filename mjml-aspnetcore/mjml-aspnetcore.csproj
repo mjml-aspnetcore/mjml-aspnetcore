@@ -3,19 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
     <RootNamespace>Mjml.AspNetCore</RootNamespace>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>Mjml.AspNetCore</AssemblyName>
-    <Configurations>Debug;Release</Configurations>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <Product>MJML View Render Engine for .Net Core</Product>
-    <PackageTags>mjml</PackageTags>
-    <Authors>jpknoll@gmail.com</Authors>
-    <PackageProjectUrl>https://github.com/jpknoll/mjml-aspnetcore</PackageProjectUrl>
-    <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/jpknoll/mjml-aspnetcore</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <NeutralLanguage>en-US</NeutralLanguage>
   </PropertyGroup>
 
